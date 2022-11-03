@@ -1,0 +1,9 @@
+show databases;
+use test2;
+show tables;
+ select concat(firstname,'works for',lastname) as firstname
+ from Employee;
+ 
+ select concat(employee.lastname,'works for',department.mgrno) as 'hierarchy' from employee
+ join department on employee.workdept=department.deptno
+ order by employee.lastname asc;

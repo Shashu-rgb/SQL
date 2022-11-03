@@ -1,0 +1,9 @@
+use test2;
+
+insert into department values(77,'D0','M6','11','newyork');
+insert into employee values(10,'ann','','Pithova',77,'1234567890','2022-12-09','JOB',2,'F',50000.00,50000.00,2000.00);
+
+select employee.firstname,employee.lastname,employee.salary
+from employee join department
+where employee.workdept=department.deptno
+and department.location='newyork' order by employee.firstname asc;

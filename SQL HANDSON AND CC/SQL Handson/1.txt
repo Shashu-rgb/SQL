@@ -1,0 +1,18 @@
+show databases;
+
+use test2;
+
+create table orders ( ORD_NO int(5),
+ PURCH_AMT decimal(8,2), 
+ ORD_DATE date, 
+ CUSTOMER_ID int(5), 
+ SALESMAN_ID int(5), 
+ FOREIGN KEY (SALESMAN_ID) REFERENCES salesman(SALESMAN_ID)
+ );
+
+ create table salesman ( sales_NAME varchar(30),
+ CITY varchar(15),
+ COMMISSION decimal(5,2),
+ SALESMAN_ID int(5), 
+ PRIMARY KEY (SALESMAN_ID)
+ );

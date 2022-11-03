@@ -1,0 +1,14 @@
+create table pizza(
+pizza_id varchar(10) primary key,
+cust_id varchar(10),
+partner_id varchar(10),
+pizza_name varchar(15),
+pizza_type varchar(15),
+order_date date,
+amount bigint(20)
+);
+
+insert into pizza values('7','4','5','momo pizza','momo','2022-10-26','180');
+
+select pizza_name,count(pizza_name) as 'no.sold'
+ from pizza group by pizza_name;

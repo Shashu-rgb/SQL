@@ -1,0 +1,41 @@
+show databases;
+use test2;
+create table Employee( empno char(6) NOT NULL,
+firstname varchar(12) NOT NULL,
+midinit char(1) NOT NULL,
+lastname varchar(15) NOT NULL,
+workdept char(3),
+phoneno char(10),
+hiredate date,
+job char(9),
+edlevel smallint,
+sex char(1),
+birthday date,
+salary decimal(9,2),
+bonus decimal(9,2),
+comm decimal(9,2)
+);
+
+alter table Employee
+add foreign key(workdept) references Department(deptno);
+
+create table Department(deptno char(3) PRIMARY KEY,
+deptname varchar(36) NOT NULL,
+mgrno char(6),
+admrdept char(3) NOT NULL,
+location char(16)
+);
+
+insert into Employee values(7,'F7','A','LNO',11,1234567890,'2022-19-10','JOB','2','F',10000.00,50000.00,2000.00);
+select * from Department;
+select * from Employee;
+
+select a.mgrno,b.Deptname as 'Manager_Department' from Department a JOIN Department b WHERE a.admrdept=b.Deptno;
+select Employee.Empno,Department.mgrno,Department.Deptname as 
+'Worker_Department',Department.Location FROM department JOIN Employee ON Employee.WorkDept=Department.Deptno;
+
+select q1.Worker_Department,q1.Location,q2.Manager_Department From 
+(select Employee.Empno,Department.mgrno,Department.Deptname as 'Worker_Department',Department.Location FROM 
+Department JOIN Employee ON Employee.Workdept=Department.Deptno) q1
+JOIN (select a.mgrno,b.Deptname as 'Manager_Department' FROM Department a JOIN Department b WHERE a.admrdept=b.Deptno) 
+ q2 ON q1.mgrno=q2.mgrno WHERE q1.Worker_Department!=q2.Worker_Department ORDER BY q1.Worker_Department asc;

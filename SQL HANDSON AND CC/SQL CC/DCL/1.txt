@@ -1,0 +1,15 @@
+create table zeerentals(
+rental_id varchar(10) primary key,
+cust_id varchar(10),
+laptop_id varchar(10),
+pick_date date,
+return_date date,
+amount bigint(20)
+);
+
+insert into zeerentals values('5','c19','L45','2020-08-03','2022-07-24',10000);
+
+select * from zeerentals;
+
+select rental_id,cust_id,laptop_id,amount,rpad(amount,10,"*") as modified_amount 
+from zeerentals where amount>7000 and year(pick_date)=2020 and month(pick_date)=08 order by rental_id asc;

@@ -1,0 +1,29 @@
+
+create table department(
+dept_id int(20) primary key,
+dept_name varchar(25)
+);
+
+create table staff(
+staff_id int(20) primary key,
+staff_name varchar(25),
+supervisor_id int(20),
+salary bigint(20),
+join_date date,
+dept_id int(20)
+);
+
+alter table staff 
+add foreign key(dept_id) references department(dept_id);
+
+insert into Department values(9,'ME');
+insert into Staff values(5,'Amal',1,10000,'2022-05-06',9);
+
+select min(Avg_Salary) from(select Dept_id,avg(Salary) as 'Avg_Salary'
+ from Staff group by Dept_id) q1 where Dept_id is not null and Dept_id != 10;
+
+select Staff_id,Staff_name,salary,dept_id
+from staff
+where salary > (select min(Avg_Salary)from(select Dept_id,avg(Salary) as 'Avg_Salary' 
+from Staff group by Dept_id) q1 where Dept_id is not null and Dept_id != 10) and dept_id=10
+order by Staff_id asc;

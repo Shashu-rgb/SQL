@@ -1,0 +1,20 @@
+create table exam_marks(
+record_id varchar(20) primary key,
+stud_id varchar(20),
+stud_name varchar(40),
+stud_standard varchar(30),
+stud_section varchar(20),
+first_language int(20),
+second_language_marks150 varchar(20),
+third_language_marks100 varchar(20),
+general_science100 int(20),
+mathematics100 int(20),
+social_science100 int(20),
+student_avg_marks int(20),
+remarks varchar(20)
+);
+
+insert into exam_marks values('R3','24','Gautham','10','A',30,40,45,30,30,56,35,'Try');
+
+select stud_name,stud_standard,student_avg_marks,general_science100,mathematics100,general_science100+mathematics100 as sciencemathstotal 
+from exam_marks where student_avg_marks>=75 and general_science100>=75 and mathematics100>=75;
